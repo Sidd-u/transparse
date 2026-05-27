@@ -10,7 +10,11 @@ Extracts key transaction fields, filters zero-debit entries, sorts by transactio
 Open your terminal and run:
 
 ```sh
-sh install.sh
+for curl:
+sh <(curl -fsSL https://raw.githubusercontent.com/Sidd-u/transparse/main/install.sh)
+
+for wget:
+sh <(wget -qO- https://raw.githubusercontent.com/Sidd-u/transparse/main/install.sh)
 ```
 
 The installer will:
