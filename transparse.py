@@ -227,6 +227,9 @@ def finalize_block(block: dict, col_map: dict):
         if inner.endswith('|'):
             inner = inner[:-1]
         remarks = inner.strip()
+    
+    if remarks=='':
+        return None
 
     return {
         'tran_no':   tran_no,
@@ -288,11 +291,11 @@ def parse_all(data_lines: list, col_map: dict) -> list:
 
 # Output column widths (characters inside pipes)
 COL_WIDTHS = {
-    'tran_no':   9,
-    'tran_date': 12,
-    'pol_no':    14,
-    'remarks':   20,
-    'debit':     16,
+    'tran_no':   13,
+    'tran_date': 16,
+    'pol_no':    18,
+    'remarks':   24,
+    'debit':     20,
 }
 
 def make_separator() -> str:
@@ -313,7 +316,7 @@ def make_data_row(t: dict) -> str:
     debit_str = f"{t['debit']:.2f}"
     remarks = t['remarks'][:COL_WIDTHS['remarks']]
     return ('               '
-            '| {:<{}} | {:<{}} | {:<{}} | {:<{}} | {:<{}} |'.format(
+            '| {:<{}} | {:<{}} | {:<{}} | {:<{}} | {:>{}} |'.format(
                 str(t['tran_no']), COL_WIDTHS['tran_no'],
                 t['tran_date'],    COL_WIDTHS['tran_date'],
                 t['pol_no'],       COL_WIDTHS['pol_no'],
