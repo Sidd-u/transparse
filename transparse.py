@@ -206,9 +206,6 @@ def finalize_block(block: dict, col_map: dict):
     except (ValueError, IndexError):
         return None
 
-    # Filter: skip entire row if debit is 0.00
-    if debit == 0.0:
-        return None
 
     # Extract Pol No from Line 2
     pol_no = ''
@@ -228,7 +225,7 @@ def finalize_block(block: dict, col_map: dict):
             inner = inner[:-1]
         remarks = inner.strip()
     
-    if remarks=='':
+    if debit == 0.0 or remarks == '':
         return None
 
     return {
