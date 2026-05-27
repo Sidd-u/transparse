@@ -389,6 +389,8 @@ def main():
 
     input_name = Path(input_path).stem
     desktop = Path.home() / 'Desktop'
+    if not desktop.exists():
+        desktop = Path.home()
     desktop.mkdir(parents=True, exist_ok=True)
     out_path = str(desktop / f'{input_name}_parsed.txt')
 
